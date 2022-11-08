@@ -49,7 +49,8 @@ def profile(request, username):
         'following': False,
     }
     if request.user.is_authenticated:
-        following = Follow.objects.filter(user=request.user).exists()
+        following = Follow.objects.filter(
+            author=author, user=request.user).exists()
         context.update({
             'following': following,
             'user': request.user,
